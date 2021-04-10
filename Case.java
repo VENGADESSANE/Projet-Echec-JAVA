@@ -1,17 +1,16 @@
-
 public class Case {
 	private int x;
 	private int y;
 	
 	
 	public Case(int x, int y) {
-		this.setX(x);
-		this.setY(y);
+		this.x = x;
+		this.y = y;
 	}
 
 	/* GETTERS & SETTERS */
 	public int getX() {
-		return x;
+		return this.x;
 	}
 
 
@@ -21,13 +20,15 @@ public class Case {
 
 
 	public int getY() {
-		return y;
+		return this.y;
 	}
 
 
 	public void setY(int y) {
 		this.y = y;
 	}
+
+
 	/* FIN GETTERS & SETTERS */
 	
 
