@@ -25,7 +25,7 @@ public class Roi_noir extends Piece {
 	//Mouvement une case à droite
 	public boolean cote_droit(Case depart, Case arrive) {
 		if(depart.cote_droit(arrive)) {
-			if(arrive.getY() == depart.getY()-1)
+			if(arrive.getY() == depart.getY()+1)
 				return true;
 		}
 		return false;
@@ -34,7 +34,7 @@ public class Roi_noir extends Piece {
 	//Mouvement une case à gauche
 	public boolean cote_gauche(Case depart, Case arrive) {
 		if(depart.cote_gauche(arrive)) {
-			if(arrive.getY() == depart.getY()+1)
+			if(arrive.getY() == depart.getY()-1)
 				return true;
 		}
 		return false;
