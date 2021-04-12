@@ -15,14 +15,14 @@ public class Echiquier {
 		this.tableau = new Piece[8][8];
 
 		// Placement des piéces noires sur l'ecgiquier
-		tableau[0][0] = new Tour_noir();
+		tableau[0][0] = new Tour_noir(this);
 		tableau[0][1] = new Cavalier_noir();
 		tableau[0][2] = new Fou_noir();
 		tableau[0][3] = new Dame_noir();
 		tableau[0][4] = new Roi_noir();
 		tableau[0][5] = new Fou_noir();
 		tableau[0][6] = new Cavalier_noir();
-		tableau[0][7] = new Tour_noir();
+		tableau[0][7] = new Tour_noir(this);
 		for (int i = 0; i<8; i++) {
 			tableau[1][i] = new Pion_noir();
 		}
@@ -64,7 +64,10 @@ public class Echiquier {
 		
 	}
 	
-	
+	public boolean verif_case_vide(int x, int y) {
+		if (tableau[y][x].getNom() == " ") {return true;}
+		else {return false;}
+	}
 	
 	
 	
@@ -73,5 +76,4 @@ public class Echiquier {
 		e1.affiche();
 	}
 }
-
 
