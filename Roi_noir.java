@@ -72,5 +72,36 @@ public class Roi_noir extends Piece {
 			return false;
 	}
 	
+	//verifaction des mouvements possibles
+	public boolean verif(Case depart, Case arrive) {
+		
+		if(this.cote_droit(depart, arrive))
+			return true;
+		
+		if(this.cote_gauche(depart, arrive))
+			return true;
+		
+		if(this.devant(depart, arrive))
+			return true;
+		
+		if(this.derriere(depart, arrive))
+			return true;
+		
+		if(this.droite_bas(depart, arrive))
+			return true;
+		
+		if(this.droite_haut(depart, arrive))
+			return true;
+		
+		if(this.gauche_bas(depart, arrive))
+			return true;
+		
+		if(this.gauche_haut(depart, arrive))
+			return true;
+		
+		else 
+			return false;
+	}
+	
 }
 
