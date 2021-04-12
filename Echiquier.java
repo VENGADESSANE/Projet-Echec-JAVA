@@ -24,7 +24,7 @@ public class Echiquier {
 		tableau[0][6] = new Cavalier_noir();
 		tableau[0][7] = new Tour_noir(this);
 		for (int i = 0; i<8; i++) {
-			tableau[1][i] = new Pion_noir();
+			tableau[1][i] = new Pion_noir(this);
 		}
 		
 		// Placement des cases libres au millieu de l'échiquier
@@ -36,16 +36,16 @@ public class Echiquier {
 		}
 
 		// Placement des piéces blanches sur l'ecgiquier
-		tableau[7][0] = new Tour_blanc();
+		tableau[7][0] = new Tour_blanc(this);
 		tableau[7][1] = new Cavalier_blanc();
 		tableau[7][2] = new Fou_blanc();
 		tableau[7][3] = new Dame_blanc();
 		tableau[7][4] = new Roi_blanc();
 		tableau[7][5] = new Fou_blanc();
 		tableau[7][6] = new Cavalier_blanc();
-		tableau[7][7] = new Tour_blanc();
+		tableau[7][7] = new Tour_blanc(this);
 		for (int i = 0; i<8; i++) {
-			tableau[6][i] = new Pion_blanc();
+			tableau[6][i] = new Pion_blanc(this);
 		}
 	}
 		
