@@ -1,7 +1,10 @@
 public class Tour_blanc extends Piece {
 	
-	public Tour_blanc() {
+	private Echiquier echiquier;
+	
+	public Tour_blanc(Echiquier echiquier) {
 		super("♖");
+		this.echiquier = echiquier;
 	}
 	
 	public boolean verif(Case depart,Case arrive) {
