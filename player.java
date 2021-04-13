@@ -9,7 +9,7 @@ public class player {
 		this.setPrenom(prenom);
 	}
 	
-	public int convertion_lettre(char lettre) {
+	public int conversion_lettre(char lettre) {
 		if(lettre == 'A')
 			return 0;
 		else if(lettre == 'B')
@@ -31,7 +31,7 @@ public class player {
 		
 	}
 	
-	public int convertion_chiffre(int numero) {
+	public int conversion_chiffre(int numero) {
 		if(numero == 1)
 			return 1;
 		else if(numero == 2)
