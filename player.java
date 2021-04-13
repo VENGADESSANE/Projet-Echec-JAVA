@@ -8,6 +8,47 @@ public class player {
 		this.setCouleur(couleur);
 		this.setPrenom(prenom);
 	}
+	
+	public int convertion_lettre(char lettre) {
+		if(lettre == 'A')
+			return 0;
+		else if(lettre == 'B')
+			return 1;
+		else if(lettre == 'C')
+			return 2;
+		else if(lettre == 'D')
+			return 3;
+		else if(lettre == 'E')
+			return 4;
+		else if(lettre == 'F')
+			return 5;
+		else if(lettre == 'G')
+			return 6;
+		else if(lettre == 'H')
+			return 7;
+		else 
+			return 404;
+		
+	}
+	
+	public int convertion_chiffre(int numero) {
+		if(numero == 1)
+			return 1;
+		else if(numero == 2)
+			return 2;
+		else if(numero == 3)
+			return 3;
+		else if(numero == 4)
+			return 4;
+		else if(numero == 5)
+			return 5;
+		else if(numero == 6)
+			return 6;
+		else if(numero == 7)
+			return 7;
+		else 
+			return 404;
+	}
 
 	/* GETTERS & SETTERS */
 	public String getCouleur() {
