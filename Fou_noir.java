@@ -1,4 +1,6 @@
 public class Fou_noir extends Piece {
+	
+	private Echiquier echiquier;
 
 	public Fou_noir() {
 		super("♝");
