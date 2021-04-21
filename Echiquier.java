@@ -3,7 +3,7 @@ import java.util.*;
 public class Echiquier {
 	private String pieces_noires;
 	private String pieces_blanches;
-	private Piece[][] tableau;
+	public Piece[][] tableau;
 	
 	
 	public Echiquier() {
@@ -110,13 +110,23 @@ public class Echiquier {
 		return this.tableau[conversion_chiffre(y)][conversion_lettre(x)];
 	}
 	
+	public int[] conversion1(String coordonees) {
+		char x = coordonees.charAt(0);
+		char y = coordonees.charAt(1);
+		int y1 = conversion_chiffre(y);
+		int x1 = conversion_lettre(x);
+		int[] res = new int[2];
+		res[0] = y1;
+		res[1] = x1;
+		return res;
+	}
+	
 	
 	public static void main(String args[]) {
 		Echiquier e1 = new Echiquier();
 		e1.affiche();
-		System.out.println(e1.conversion("G8"));
+		System.out.println(e1.conversion1("B2"));
 		
 	}
 }
-
 
