@@ -1,7 +1,7 @@
 public class Cavalier_noir extends Piece {
 
 	public Cavalier_noir() {
-		super("♞");
+		super("♞",1);
 	}
 	
 	public boolean devant_droite(Case depart, Case arrive) {
