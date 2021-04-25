@@ -4,9 +4,11 @@ public class Echiquier {
 	private String pieces_noires;
 	private String pieces_blanches;
 	public Piece[][] tableau;
+	public Jeu jeu;
 	
 	
-	public Echiquier() {
+	public Echiquier(Jeu jeu) {
+		this.jeu = jeu;
 		// Création des String qui contient les noms des piéces a la suite ( je sais pas pk j'ai fait ça xD on verra plus tard si besoin)
 		this.pieces_blanches = new String ("♙♖♘♗♕♔");
 		this.pieces_noires = new String ("♟♜♞♝♛♚");
@@ -31,7 +33,7 @@ public class Echiquier {
 		for (int i = 2; i < 6; i++) {
 			
 			for (int y = 0; y < 8; y++) {
-				tableau[i][y] = new Piece(" ");	
+				tableau[i][y] = new Piece(" ",2);	
 			}
 		}
 
@@ -70,21 +72,21 @@ public class Echiquier {
 	}
 	
 	public static int conversion_lettre(char lettre) {
-		if(lettre == 'A')
+		if(lettre == 'A' || lettre == 'a')
 			return 0;
-		else if(lettre == 'B')
+		else if(lettre == 'B' || lettre == 'b')
 			return 1;
-		else if(lettre == 'C')
+		else if(lettre == 'C' || lettre == 'c')
 			return 2;
-		else if(lettre == 'D')
+		else if(lettre == 'D' || lettre == 'd')
 			return 3;
-		else if(lettre =='E')
+		else if(lettre =='E' || lettre == 'e')
 			return 4;
-		else if(lettre == 'F')
+		else if(lettre == 'F' || lettre == 'f')
 			return 5;
-		else if(lettre == 'G')
+		else if(lettre == 'G' || lettre == 'g')
 			return 6;
-		else if(lettre == 'H')
+		else if(lettre == 'H' || lettre == 'h')
 			return 7;
 		else 
 			return 404;
@@ -121,12 +123,14 @@ public class Echiquier {
 		return res;
 	}
 	
+	public boolean premierCoup() {
+	if (this.jeu.premierCoup() == true ) {return true;}
+	else {return false;}
+	} 
+	
 	
 	public static void main(String args[]) {
-		Echiquier e1 = new Echiquier();
-		e1.affiche();
-		System.out.println(e1.conversion1("B2"));
-		
+			
 	}
 }
 
