@@ -3,7 +3,7 @@ public class Tour_blanc extends Piece {
 	private Echiquier echiquier;
 	
 	public Tour_blanc(Echiquier echiquier) {
-		super("♖");
+		super("♖",0);
 		this.echiquier = echiquier;
 	}
 	
@@ -35,13 +35,13 @@ public class Tour_blanc extends Piece {
 			// si le mouvement s'effectue vers le haut
 			if (arrive.getY() > depart.getY()) {
 				for (int i = depart.getY()+1; i < arrive.getY(); i++) {
-					if (this.echiquier.verif_case_vide(i, depart.getY()) == false) {return false;}
+					if (this.echiquier.verif_case_vide(depart.getX(), i) == false) {return false;}
 				}
 			}
 			// si le mouvement s'effectue vers le bas
 			if (arrive.getY() < depart.getY()) {
-				for (int i = depart.getY()-1; i > arrive.getY(); i--) {
-					if (this.echiquier.verif_case_vide(i, depart.getY()) == false) {return false;}
+				for (int i = depart.getY()-1; i >= arrive.getY(); i--) {
+					if (this.echiquier.verif_case_vide(depart.getX(), i) == false) {return false;}
 				}
 			}
 		}
