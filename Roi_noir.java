@@ -1,7 +1,7 @@
 public class Roi_noir extends Piece {
 
 	public Roi_noir() {
-		super("♚");
+		super("♚",1);
 	}
 	
 	//Mouvement une case devant 
