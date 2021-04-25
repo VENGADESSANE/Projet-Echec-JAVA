@@ -1,7 +1,7 @@
 public class Fou_blanc extends Piece {
 
 	public Fou_blanc() {
-		super("♗");
+		super("♗",0);
 	}
 	
 	public boolean diagonale_verif(Case depart, Case arrive) {
