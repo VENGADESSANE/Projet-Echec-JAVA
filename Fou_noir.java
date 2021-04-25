@@ -3,7 +3,7 @@ public class Fou_noir extends Piece {
 	private Echiquier echiquier;
 
 	public Fou_noir() {
-		super("♝");
+		super("♝",1);
 	}
 	
 	public boolean diagonale_verif(Case depart, Case arrive) {
