@@ -4,6 +4,34 @@ public class Cavalier_noir extends Piece {
 		super("♞",1);
 	}
 	
+	public boolean verif(Case depart, Case arrive) {
+		if(this.devant_droite(depart, arrive))
+			return true; 
+		else if(this.devant_gauche(depart, arrive)) {
+			return true;
+		}
+		else if(this.droite_haut(depart, arrive)) {
+			return true;
+		}
+		else if(this.droite_bas(depart, arrive)) {
+			return true;
+		}
+		else if(this.gauche_haut(depart, arrive)) {
+			return true;
+		}
+		else if(this.gauche_bas(depart, arrive)) {
+			return true;
+		}
+		else if(this.derriere_droite(depart, arrive)) {
+			return true;
+		}
+		else if(this.derriere_gauche(depart, arrive)) {
+			return true;
+		}
+		else
+			return false;
+		}
+	
 	public boolean devant_droite(Case depart, Case arrive) {
 			if(arrive.getX() == depart.getX()- 1 && arrive.getY() == depart.getY() - 2)
 				return true;
