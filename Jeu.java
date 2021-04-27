@@ -55,9 +55,9 @@ public void jeu_en_cours() {
 					if (piece_d.verif(case_d, case_a) == true && piece_d.verif_case_libre(case_d, case_a) == true) {
 						this.echiquier.tableau[ tab_coordo1[0] ][ tab_coordo1[1] ] = new Piece(" ",2);
 						this.echiquier.tableau[ tab_coordo2[0] ][ tab_coordo2[1] ] = piece_d;
+						this.compteur = this.compteur + 1;
 					}
 					else { System.out.println("-- Mouvement impossible -- "); }
-					this.compteur = this.compteur + 1;
 				}
 				else { System.out.println("-- Vous pouvez jouer uniquement vos piéces --"); }
 				
@@ -69,14 +69,7 @@ public void jeu_en_cours() {
 	} 
 }
 	
-public boolean premierCoup() {
-	if (this.compteur == 1 || this.compteur == 2 ) {return true;}
-	else {return false;}
-}
-			
-		
-		
-		
+
 		
 		
 		
