@@ -40,7 +40,7 @@ public class Tour_blanc extends Piece {
 			}
 			// si le mouvement s'effectue vers le bas
 			if (arrive.getY() < depart.getY()) {
-				for (int i = depart.getY()-1; i >= arrive.getY(); i--) {
+				for (int i = depart.getY()-1; i > arrive.getY(); i--) {
 					if (this.echiquier.verif_case_vide(depart.getX(), i) == false) {return false;}
 				}
 			}
