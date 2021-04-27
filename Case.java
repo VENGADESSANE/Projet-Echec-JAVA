@@ -27,34 +27,6 @@ public class Case {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
-	public boolean devant(Case arrive) {
-		if(this.getX() == arrive.getX())
-			return true;
-		else
-			return false;
-	}
-
-	public boolean derriere(Case arrive) {
-		if(this.getX() == arrive.getX())
-			return true;
-		else
-			return false;
-	}
-
-	public boolean cote_droit(Case arrive) {
-		if(this.getY() == arrive.getY())
-			return true;
-		else
-			return false;
-	}
-
-	public boolean cote_gauche(Case arrive) {
-		if(this.getY() == arrive.getY())
-			return true;
-		else
-			return false;
-	}
 
 
 	/* FIN GETTERS & SETTERS */
