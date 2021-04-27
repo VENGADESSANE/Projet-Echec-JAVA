@@ -54,15 +54,26 @@ public class Echiquier {
 		
 	
 	public void affiche() {
+		System.out.println(new String ("_|_________________"));
 		for( int i=0; i<8; i++) {
-			String s = "|";
+			String s = new String();
+			if (i == 0) {  s = "8| ";}
+			else if (i == 1) {  s = "7| ";}
+			else if (i == 2) {  s = "6| ";}
+			else if (i == 3) {  s = "5| ";}
+			else if (i == 4) {  s = "4| ";}
+			else if (i == 5) {  s = "3| ";}
+			else if (i == 6) {  s = "2| ";}
+			else {s = "1| ";}
 			
 			for(int j=0; j<8; j++) {
 				
 				s = s + this.tableau[i][j] + "|";
 			}
-			System.out.println(s);			
+			System.out.println(s);		
 		}
+		System.out.println(new String ("_|________________|"));
+		System.out.println(new String (" | A|B|C|D|E|F|G|H|"));	
 		
 	}
 	
@@ -106,10 +117,10 @@ public class Echiquier {
 		else {return 404;}
 	}
 	
-	public Piece conversion(String coordonees) {
-		char x = coordonees.charAt(0);
-		char y = coordonees.charAt(1);
-		return this.tableau[conversion_chiffre(y)][conversion_lettre(x)];
+	public Piece conversion(Case cas) {
+		int x = cas.getX();
+		int y = cas.getY();
+		return this.tableau[y][x];
 	}
 	
 	public int[] conversion1(String coordonees) {
@@ -122,11 +133,6 @@ public class Echiquier {
 		res[1] = x1;
 		return res;
 	}
-	
-	public boolean premierCoup() {
-	if (this.jeu.premierCoup() == true ) {return true;}
-	else {return false;}
-	} 
 	
 	
 	public static void main(String args[]) {
