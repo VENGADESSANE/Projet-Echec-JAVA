@@ -1,9 +1,7 @@
 public class Fou_blanc extends Piece {
-	private Echiquier echiquier;
 
 	public Fou_blanc(Echiquier echiquier) {
-		super("♗",0);
-		this.echiquier = echiquier;
+		super("♗",0,echiquier);
 	}
 	
 	public boolean verif(Case depart, Case arrive) {
@@ -76,3 +74,4 @@ public class Fou_blanc extends Piece {
 	}
 	
 }
+

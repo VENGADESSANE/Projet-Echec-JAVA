@@ -1,11 +1,12 @@
 public class Pion_noir extends Piece {
-	private Echiquier echiquier;
 	private boolean premierCoup;
+	private boolean capteurEchec;
 
 	public Pion_noir(Echiquier echiquier) {
-		super("♟",1);
+		super("♟",1,echiquier);
 		this.echiquier = echiquier;
 		this.premierCoup = true;
+		this.capteurEchec = false;
 	}
 	
 	public boolean verif(Case depart, Case arrive) {
@@ -44,6 +45,7 @@ public class Pion_noir extends Piece {
 		return true;
 	}
 }
+
 
 
 

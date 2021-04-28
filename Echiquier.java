@@ -18,12 +18,12 @@ public class Echiquier {
 
 		// Placement des piéces noires sur l'ecgiquier
 		tableau[0][0] = new Tour_noir(this);
-		tableau[0][1] = new Cavalier_noir();
-		tableau[0][2] = new Fou_noir();
+		tableau[0][1] = new Cavalier_noir(this);
+		tableau[0][2] = new Fou_noir(this);
 		tableau[0][3] = new Dame_noir(this);
-		tableau[0][4] = new Roi_noir();
-		tableau[0][5] = new Fou_noir();
-		tableau[0][6] = new Cavalier_noir();
+		tableau[0][4] = new Roi_noir(this);
+		tableau[0][5] = new Fou_noir(this);
+		tableau[0][6] = new Cavalier_noir(this);
 		tableau[0][7] = new Tour_noir(this);
 		for (int i = 0; i<8; i++) {
 			tableau[1][i] = new Pion_noir(this);
@@ -33,18 +33,18 @@ public class Echiquier {
 		for (int i = 2; i < 6; i++) {
 			
 			for (int y = 0; y < 8; y++) {
-				tableau[i][y] = new Piece(" ",2);	
+				tableau[i][y] = new Piece(" ",2,this);	
 			}
 		}
 
 		// Placement des piéces blanches sur l'ecgiquier
 		tableau[7][0] = new Tour_blanc(this);
-		tableau[7][1] = new Cavalier_blanc();
-		tableau[7][2] = new Fou_blanc();
+		tableau[7][1] = new Cavalier_blanc(this);
+		tableau[7][2] = new Fou_blanc(this);
 		tableau[7][3] = new Dame_blanc(this);
-		tableau[7][4] = new Roi_blanc();
-		tableau[7][5] = new Fou_blanc();
-		tableau[7][6] = new Cavalier_blanc();
+		tableau[7][4] = new Roi_blanc(this);
+		tableau[7][5] = new Fou_blanc(this);
+		tableau[7][6] = new Cavalier_blanc(this);
 		tableau[7][7] = new Tour_blanc(this);
 		for (int i = 0; i<8; i++) {
 			tableau[6][i] = new Pion_blanc(this);
@@ -81,6 +81,13 @@ public class Echiquier {
 		if (tableau[y][x].getNom() == " ") {return true;}
 		else {return false;}
 	}
+	
+	public boolean si_roi_noir(int x, int y) {
+		if ( x < 8 && x >= 0 && y < 8 && y >= 0) {
+			if (tableau[y][x].getNom() == "♚") {;return true;}
+			else return false;}
+		else {return false;}
+		}
 	
 	public static int conversion_lettre(char lettre) {
 		if(lettre == 'A' || lettre == 'a')
@@ -134,9 +141,20 @@ public class Echiquier {
 		return res;
 	}
 	
+	public boolean echec() {
+		for (int a = 0; a < 8; a++) {
+			for (int b = 0; b < 8; b++) {
+				if (this.tableau[a][b].verif_si_roi()) {
+					return true;}
+			}
+		}
+		return false;}
+				
+	
 	
 	public static void main(String args[]) {
 			
 	}
 }
+
 

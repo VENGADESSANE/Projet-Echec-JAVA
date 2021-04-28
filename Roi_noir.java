@@ -1,9 +1,7 @@
 public class Roi_noir extends Piece {
-	private Echiquier echiquier;
 
 	public Roi_noir(Echiquier echiquier) {
-		super("♚",1);
-		this.echiquier = echiquier;
+		super("♚",1,echiquier);
 	}
 	
 	//Mouvement une case devant 
@@ -103,3 +101,4 @@ public class Roi_noir extends Piece {
 	public boolean verif_case_libre(Case depart, Case arrive) {return true;}
 	
 }
+

@@ -1,9 +1,7 @@
 public class Cavalier_noir extends Piece {
-	private Echiquier echiquier;
 
 	public Cavalier_noir(Echiquier echiquier) {
-		super("♞",1);
-		this.echiquier = echiquier;
+		super("♞",1,echiquier);
 	}
 	
 	public boolean verif(Case depart, Case arrive) {
@@ -29,3 +27,4 @@ public class Cavalier_noir extends Piece {
 	public boolean verif_case_libre(Case depart, Case arrive) {
 		return true;}
 }
+

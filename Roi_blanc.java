@@ -1,9 +1,7 @@
 public class Roi_blanc extends Piece {
-	private Echiquier echiquier;
 
 	public Roi_blanc(Echiquier echiquier) {
-		super("♔",0);
-		this.echiquier = echiquier;
+		super("♔",0,echiquier);
 
 	}
 	
@@ -106,3 +104,4 @@ public class Roi_blanc extends Piece {
 		
 	
 }
+

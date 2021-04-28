@@ -1,10 +1,7 @@
 public class Tour_blanc extends Piece {
 	
-	private Echiquier echiquier;
-	
 	public Tour_blanc(Echiquier echiquier) {
-		super("♖",0);
-		this.echiquier = echiquier;
+		super("♖",0,echiquier);
 	}
 	
 	public boolean verif(Case depart,Case arrive) {
@@ -20,6 +17,7 @@ public class Tour_blanc extends Piece {
 			// si le mouvement s'effectue vers la droite
 			if (arrive.getX() > depart.getX()) {
 				for (int i = depart.getX()+1; i < arrive.getX(); i++) {
+					
 					if (this.echiquier.verif_case_vide(i, depart.getY()) == false) {return false;}
 				}
 			}
