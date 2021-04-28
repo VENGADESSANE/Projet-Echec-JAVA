@@ -4,7 +4,6 @@ public class Pion_noir extends Piece {
 
 	public Pion_noir(Echiquier echiquier) {
 		super("♟",1,echiquier);
-		this.echiquier = echiquier;
 		this.premierCoup = true;
 		this.capteurEchec = false;
 	}
@@ -43,6 +42,16 @@ public class Pion_noir extends Piece {
 			}
 		this.premierCoup = false;
 		return true;
+	}
+	public boolean verif_si_roi() {
+		this.setMa_position(this.ma_position());
+		if (this.echiquier.si_roi_blanc(this.getMa_position().getX()+1, this.getMa_position().getY()+1)) {
+			return true;
+		}
+		else if (this.echiquier.si_roi_blanc(this.getMa_position().getX()-1, this.getMa_position().getY()+1)) {
+			return true;
+		}
+		else { return false; }
 	}
 }
 

@@ -45,16 +45,10 @@ public class Pion_blanc extends Piece {
 	
 	public boolean verif_si_roi() {
 		this.setMa_position(this.ma_position());
-		if (this.echiquier.si_roi_noir(this.getMa_position().getX()+1, this.getMa_position().getY()+1)) {
-			return true;
-		}
-		else if (this.echiquier.si_roi_noir(this.getMa_position().getX()+1, this.getMa_position().getY()-1)) {
+		if (this.echiquier.si_roi_noir(this.getMa_position().getX()+1, this.getMa_position().getY()-1)) {
 			return true;
 		}
 		else if (this.echiquier.si_roi_noir(this.getMa_position().getX()-1, this.getMa_position().getY()-1)) {
-			return true;
-		}
-		else if (this.echiquier.si_roi_noir(this.getMa_position().getX()-1, this.getMa_position().getY()+1)) {
 			return true;
 		}
 		else { return false; }

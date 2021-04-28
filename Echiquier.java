@@ -88,6 +88,12 @@ public class Echiquier {
 			else return false;}
 		else {return false;}
 		}
+	public boolean si_roi_blanc(int x, int y) {
+		if ( x < 8 && x >= 0 && y < 8 && y >= 0) {
+			if (tableau[y][x].getNom() == "♔") {;return true;}
+			else return false;}
+		else {return false;}
+		}
 	
 	public static int conversion_lettre(char lettre) {
 		if(lettre == 'A' || lettre == 'a')
