@@ -6,8 +6,8 @@ public class Tour_noir extends Piece {
 	
 	public boolean verif(Case depart,Case arrive) {
 		if (depart.getY() == arrive.getY()) {return true;}
-		else if (depart.getX() == depart.getX()) {return true;}
-		else {return false;}
+		if (depart.getX() == arrive.getX()) {return true;}
+		return false;
 	}
 	
 	// Vérification si personne est sur le chemin
@@ -17,6 +17,7 @@ public class Tour_noir extends Piece {
 			// si le mouvement s'effectue vers la droite
 			if (arrive.getX() > depart.getX()) {
 				for (int i = depart.getX()+1; i < arrive.getX(); i++) {
+					
 					if (this.echiquier.verif_case_vide(i, depart.getY()) == false) {return false;}
 				}
 			}
@@ -32,13 +33,13 @@ public class Tour_noir extends Piece {
 			// si le mouvement s'effectue vers le haut
 			if (arrive.getY() > depart.getY()) {
 				for (int i = depart.getY()+1; i < arrive.getY(); i++) {
-					if (this.echiquier.verif_case_vide(i, depart.getY()) == false) {return false;}
+					if (this.echiquier.verif_case_vide(depart.getX(), i) == false) {return false;}
 				}
 			}
 			// si le mouvement s'effectue vers le bas
 			if (arrive.getY() < depart.getY()) {
 				for (int i = depart.getY()-1; i > arrive.getY(); i--) {
-					if (this.echiquier.verif_case_vide(i, depart.getY()) == false) {return false;}
+					if (this.echiquier.verif_case_vide(depart.getX(), i) == false) {return false;}
 				}
 			}
 		}

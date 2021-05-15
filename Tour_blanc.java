@@ -6,8 +6,8 @@ public class Tour_blanc extends Piece {
 	
 	public boolean verif(Case depart,Case arrive) {
 		if (depart.getY() == arrive.getY()) {return true;}
-		else if (depart.getX() == depart.getX()) {return true;}
-		else {return false;}
+		if (depart.getX() == arrive.getX()) {return true;}
+		return false;
 	}
 	
 	// Vérification si personne est sur le chemin
