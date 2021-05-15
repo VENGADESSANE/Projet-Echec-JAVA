@@ -5,7 +5,7 @@ public class Roi_blanc extends Piece {
 
 	}
 	
-// DÉBUT ** Ensemble de mouvement qu'il peut faire ** DÉBUT //
+// DÉBUT ** Ensemble de mouvement que le roi faire ** DÉBUT //
 	
 	//Mouvement une case devant 
 	public boolean devant(Case depart, Case arrive) {
