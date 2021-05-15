@@ -9,14 +9,14 @@ public class Echiquier {
 	
 	public Echiquier(Jeu jeu) {
 		this.jeu = jeu;
-		// Création des String qui contient les noms des piéces a la suite ( je sais pas pk j'ai fait ça xD on verra plus tard si besoin)
+		// Création des String qui contient les noms des piéces à la suite ( je sais pas pk j'ai fait ça xD on verra plus tard si besoin)
 		this.pieces_blanches = new String ("♙♖♘♗♕♔");
 		this.pieces_noires = new String ("♟♜♞♝♛♚");
 
 		// Création du tableau
 		this.tableau = new Piece[8][8];
 
-		// Placement des piéces noires sur l'ecgiquier
+		// Placement des pièces noires sur l'echiquier
 		tableau[0][0] = new Tour_noir(this);
 		tableau[0][1] = new Cavalier_noir(this);
 		tableau[0][2] = new Fou_noir(this);
@@ -37,7 +37,7 @@ public class Echiquier {
 			}
 		}
 
-		// Placement des piéces blanches sur l'ecgiquier
+		// Placement des pièces blanches sur l'echiquier
 		tableau[7][0] = new Tour_blanc(this);
 		tableau[7][1] = new Cavalier_blanc(this);
 		tableau[7][2] = new Fou_blanc(this);
@@ -52,7 +52,7 @@ public class Echiquier {
 	}
 		
 		
-	
+	// Affichage du talbeau avec les informations de position (A,B,C... et 1,2,3...)
 	public void affiche() {
 		System.out.println(new String ("_|_________________"));
 		for( int i=0; i<8; i++) {
@@ -77,11 +77,13 @@ public class Echiquier {
 		
 	}
 	
+	//Méthode de vérification qui regarde si la case est libre avec le nom de la pièces si elle se trouve dans cette case
 	public boolean verif_case_vide(int x, int y) {
 		if (tableau[y][x].getNom() == " ") {return true;}
 		else {return false;}
 	}
 	
+	// Méthode pour vérifier si les rois sont présents
 	public boolean si_roi_noir(int x, int y) {
 		if ( x < 8 && x >= 0 && y < 8 && y >= 0) {
 			if (tableau[y][x].getNom() == "♚") {;return true;}
@@ -95,6 +97,7 @@ public class Echiquier {
 		else {return false;}
 		}
 	
+	// Méthode de conversion pour lettres que ca soit en minuscule ou majuscule
 	public static int conversion_lettre(char lettre) {
 		if(lettre == 'A' || lettre == 'a')
 			return 0;
@@ -117,6 +120,7 @@ public class Echiquier {
 		
 	}
 	
+	// Méthode de conversion des chiffres
 	public static int conversion_chiffre(char numero) {
 		int num = Character.getNumericValue(numero);
 		if(num == 1) {return 7;}
@@ -147,6 +151,7 @@ public class Echiquier {
 		return res;
 	}
 	
+	// Méthode pour dire que la partie est en échec
 	public boolean echec() {
 		for (int a = 0; a < 8; a++) {
 			for (int b = 0; b < 8; b++) {
