@@ -4,6 +4,7 @@ public class Fou_blanc extends Piece {
 		super("♗",0,echiquier);
 	}
 	
+	// Méthode de vétification pour les déplacement possible
 	public boolean verif(Case depart, Case arrive) {
 		for(int i = 0; i<=8; i++) {
 			if(depart.getX()+i == arrive.getX() && depart.getY()+i == arrive.getY())
