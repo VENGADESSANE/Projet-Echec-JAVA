@@ -51,27 +51,27 @@ public class Tour_noir extends Piece {
 	
 		int x = this.getMa_position().getX()+1;
 		int y = this.getMa_position().getY(); 
-		while ( x<8 && x>=0 && (this.echiquier.verif_case_vide(x,y) || this.echiquier.si_roi_noir(x,y))) {
-			if (this.echiquier.si_roi_noir(x,y)) {return true;}
+		while ( x<8 && x>=0 && (this.echiquier.verif_case_vide(x,y) || this.echiquier.si_roi_blanc(x,y))) {
+			if (this.echiquier.si_roi_blanc(x,y)) {return true;}
 			x++;
 		}
 		
 		x = this.getMa_position().getX()-1;
-		while ( x<8 && x>=0 && (this.echiquier.verif_case_vide(x,y) || this.echiquier.si_roi_noir(x,y))) {
-			if (this.echiquier.si_roi_noir(x,y)) {return true;}
+		while ( x<8 && x>=0 && (this.echiquier.verif_case_vide(x,y) || this.echiquier.si_roi_blanc(x,y))) {
+			if (this.echiquier.si_roi_blanc(x,y)) {return true;}
 			x--;
 		}
 		
 		x = this.getMa_position().getX();
 		y = this.getMa_position().getY()+1;
-		while ( y<8 && y>=0 && (this.echiquier.verif_case_vide(x,y) || this.echiquier.si_roi_noir(x,y))) {
-			if (this.echiquier.si_roi_noir(x,y)) {return true;}
+		while ( y<8 && y>=0 && (this.echiquier.verif_case_vide(x,y) || this.echiquier.si_roi_blanc(x,y))) {
+			if (this.echiquier.si_roi_blanc(x,y)) {return true;}
 			y++;
 		}
 		
 		y = this.getMa_position().getY()-1;
-		while ( y<8 && y>=0 && (this.echiquier.verif_case_vide(x,y) || this.echiquier.si_roi_noir(x,y))) {
-			if (this.echiquier.si_roi_noir(x,y)) {return true;}
+		while ( y<8 && y>=0 && (this.echiquier.verif_case_vide(x,y) || this.echiquier.si_roi_blanc(x,y))) {
+			if (this.echiquier.si_roi_blanc(x,y)) {return true;}
 			y--;
 		}
 		

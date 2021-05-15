@@ -5,8 +5,6 @@ public class Roi_blanc extends Piece {
 
 	}
 	
-// DÉBUT ** Ensemble de mouvement que le roi faire ** DÉBUT //
-	
 	//Mouvement une case devant 
 	public boolean devant(Case depart, Case arrive) {
 		if(depart.getX() == arrive.getX() && depart.getY()-1 == arrive.getY()) {
@@ -70,8 +68,6 @@ public class Roi_blanc extends Piece {
 		else 
 			return false;
 	}
-	
-// FIN ** Ensemble de mouvement que le roi peut faire ** FIN //
 	
 	//verifaction des mouvements possibles
 	public boolean verif(Case depart, Case arrive) {
