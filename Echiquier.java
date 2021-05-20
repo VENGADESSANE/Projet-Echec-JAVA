@@ -33,6 +33,8 @@ public class Echiquier {
 		for (int i = 2; i < 6; i++) {
 			
 			for (int y = 0; y < 8; y++) {
+				//Les cases libres sont représenter par des pions n'ayant pas de nom afin de permettre
+				//un bon affichage de l'échiquer a travers tout les platformes.
 				tableau[i][y] = new Piece(" ",2,this);	
 			}
 		}
@@ -52,7 +54,7 @@ public class Echiquier {
 	}
 		
 		
-	
+	//Méthode pérmettant l'affichage de l'échiquer
 	public void affiche() {
 		System.out.println(new String ("_|_________________"));
 		for( int i=0; i<8; i++) {
@@ -77,17 +79,20 @@ public class Echiquier {
 		
 	}
 	
+	//Vérification si une case est vide
 	public boolean verif_case_vide(int x, int y) {
 		if (tableau[y][x].getNom() == " ") {return true;}
 		else {return false;}
 	}
 	
+	//Vérification si une case contient un roi
 	public boolean si_roi_noir(int x, int y) {
 		if ( x < 8 && x >= 0 && y < 8 && y >= 0) {
 			if (tableau[y][x].getNom() == "♚") {;return true;}
 			else return false;}
 		else {return false;}
 		}
+	
 	public boolean si_roi_blanc(int x, int y) {
 		if ( x < 8 && x >= 0 && y < 8 && y >= 0) {
 			if (tableau[y][x].getNom() == "♔") {;return true;}
@@ -95,6 +100,7 @@ public class Echiquier {
 		else {return false;}
 		}
 	
+	//Conversion des lettes INPUT en INTEGER traitable par les classes
 	public static int conversion_lettre(char lettre) {
 		if(lettre == 'A' || lettre == 'a')
 			return 0;
@@ -117,6 +123,7 @@ public class Echiquier {
 		
 	}
 	
+	//Conversion des numero INPUT en INTEGER leur correspondant
 	public static int conversion_chiffre(char numero) {
 		int num = Character.getNumericValue(numero);
 		if(num == 1) {return 7;}
@@ -136,6 +143,7 @@ public class Echiquier {
 		return this.tableau[y][x];
 	}
 	
+	//Conversion des coordonnees INPUT vers des données traitable par les classes
 	public int[] conversion1(String coordonees) {
 		char x = coordonees.charAt(0);
 		char y = coordonees.charAt(1);
@@ -147,6 +155,7 @@ public class Echiquier {
 		return res;
 	}
 	
+	//Vérifcation si le roi est en echec
 	public boolean echec() {
 		for (int a = 0; a < 8; a++) {
 			for (int b = 0; b < 8; b++) {
@@ -158,8 +167,8 @@ public class Echiquier {
 				
 	
 	
-	public static void main(String args[]) {
+	//public static void main(String args[]) {
 			
-	}
+	//}
 }
 
