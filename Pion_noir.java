@@ -43,6 +43,23 @@ public class Pion_noir extends Piece {
 		this.premierCoup = false;
 		return true;
 	}
+	
+	public boolean prise_en_passant(Case depart, Case arrive) {
+		if (this.echiquier.verif_case_vide(arrive.getX()-1, depart.getY())) {
+			if ((depart.getX()-1 == arrive.getX() && arrive.getY() == depart.getY()) 
+				|| (depart.getX() == arrive.getX() && arrive.getY()+1 == depart.getY())){return false;}
+			this.getNom()
+			return true;
+		}
+		if (this.echiquier.verif_case_vide(arrive.getX()-1, depart.getY())) {
+			if ((depart.getX()-1 == arrive.getX() && arrive.getY() == depart.getY()) 
+				|| (depart.getX() == arrive.getX() && arrive.getY()+1 == depart.getY())){return false;}
+			return true;
+		}
+		return true;
+		
+	}
+	
 	public boolean verif_si_roi() {
 		this.setMa_position(this.ma_position());
 		if (this.echiquier.si_roi_blanc(this.getMa_position().getX()+1, this.getMa_position().getY()+1)) {
