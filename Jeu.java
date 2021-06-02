@@ -10,13 +10,13 @@ public class Jeu {
 
 	// Le constructeur de jeu 1VS1
 	public Jeu() {
-		System.out.println("** Vous avez choisis le mode un contre un **");
-		System.out.println("-- Entrer le nom du premier joueur --");
+		System.out.println("** Vous avez choisi le mode un contre un **");
+		System.out.println("-- Entrez le nom du premier joueur --");
 		Scanner a = new Scanner(System.in);
 		String nom1 = a.nextLine();
 		this.joueur1 = new Player(nom1, "blanc");
 
-		System.out.println("-- Entrer le nom du deuxiéme joueur --");
+		System.out.println("-- Entrez le nom du deuxiéme joueur --");
 		Scanner b = new Scanner(System.in);
 		String nom2 = b.nextLine();
 		this.joueur2 = new Player(nom2, "noir");
@@ -24,19 +24,24 @@ public class Jeu {
 		//Donner possiblité de charger une partie.
 		String res = new String();
 		while (res.equals("nouveau")==false && res.equals("continuer")==false) {
-			System.out.println("** Voulez vous commencer une nouvelle partie ou continuer une partie enregistrer ? [nouveau/continuer] **");
-			System.out.println("** Attention : Le commencement d'une nouvelle partie entraine l'écrasement des données d'une partie déja en cours ! **");
+			System.out.println("** Voulez vous commencer une nouvelle partie ou continuer une partie enregistrée ? [nouveau/continuer] **");
+			System.out.println("** Attention : Le commencement d'une nouvelle partie entraine l'écrasement des données d'une partie déjà en cours ! **");
 			Scanner choix = new Scanner(System.in);
 			res = choix.nextLine();
 			if (res.equals("continuer")) {
+				try {
 				this.echiquier = new Echiquier("/home/subbu/eclipse-workspace/Jeu_echec/src/charger");
+				}catch(Exception e) {
+					System.out.println("Erreur lors du chargement du fichier");
+					this.echiquier = new Echiquier();
+				}
 			}
 			else { this.echiquier = new Echiquier();}
 		}
 
 
 
-		System.out.println("** "+nom1 + " vous jouez les piéces blanches et "+ nom2 + " vous jouez les piéces noires **");
+		System.out.println("** "+nom1 + " vous jouez les pièces blanches et "+ nom2 + " vous jouez les pièces noires **");
 
 	} 
 
@@ -61,12 +66,12 @@ public class Jeu {
 
 				// C'est le tour des noires si le compteur de tour est pair (et inversement)
 				if ( this.compteur%2 == 0 ) {
-					System.out.println("* Au tour des noires *");
+					System.out.println("* Au tour des noirs *");
 				}
 				else { System.out.println("* Au tour des blancs *"); }
 
 				//INPUT des coordonnés de la case a jouer
-				System.out.println("** Indiquez les coordonnées de la case de la piéce que vous voulez jouez ? **");
+				System.out.println("** Indiquez les coordonnées de la case de la pièce que vous voulez jouer ? **");
 				Scanner case1 = new Scanner(System.in);
 				String coordonees_d = case1.nextLine();
 				// Convertissement en INTEGER traitable par l'échiquier
@@ -77,7 +82,7 @@ public class Jeu {
 					Case case_d = new Case( tab_coordo1[1], tab_coordo1[0] );
 
 					//INPUT des coordonnés de la case de destination
-					System.out.println("** Indiquez les coordonnées de la case sur la qu'elle vous voulez vous déplacer ? **");
+					System.out.println("** Indiquez les coordonnées de la case sur laquelle vous voulez vous déplacer ? **");
 					Scanner case2 = new Scanner(System.in);
 					String coordonees_a = case2.nextLine();
 					// Convertissement en INTEGER traitable par l'échiquier
@@ -103,7 +108,7 @@ public class Jeu {
 								this.echiquier.tableau[ tab_coordo2[0] ][ tab_coordo2[1] ] = piece_d;
 								this.compteur = this.compteur + 1;
 
-								//Si suite au mouvement un joueur se met en echec : on annule le coup
+								//La pièce clouée :Si suite au mouvement un joueur se met en echec : on annule le coup
 								if (this.echiquier.echec()) {
 									this.echiquier.tableau[ tab_coordo1[0] ][ tab_coordo1[1] ] = piece_d;
 									this.echiquier.tableau[ tab_coordo2[0] ][ tab_coordo2[1] ] = piece_a;
@@ -115,38 +120,38 @@ public class Jeu {
 
 							else { System.out.println("-- Mouvement impossible -- "); }
 						}
-						else { System.out.println("-- Vous pouvez jouer uniquement vos piéces --"); }
+						else { System.out.println("-- Vous pouvez jouer uniquement vos pièces --"); }
 
 					}
-					else { System.out.println("-- Veuillez choisir une case de l'echiquier --"); }
+					else { System.out.println("-- Veuillez choisir une case de l'échiquier --"); }
 
 				}
-				else { System.out.println("-- Veuillez jouer une piéce étant dans une case de l'echiquier --"); }
+				else { System.out.println("-- Veuillez jouer une pièce étant dans une case de l'échiquier --"); }
 
 			}
 
 			this.echiquier.affiche();
 			this.echiquier.Enregistrer();
 
-			//Si le joueur n'est pas en echec du roi
-			// C'est le tour des noires si le compteur de tour est pair (et inversement)
+			//Si le joueur n'est pas en échec du roi
+			// C'est le tour des noirs si le compteur de tour est pair (et inversement)
 			if ( this.compteur%2 == 0 ) {
-				System.out.println("* Au tour des noires *");
+				System.out.println("* Au tour des noirs *");
 			}
 			else { System.out.println("* Au tour des blancs *"); }
 
-			//INPUT des coordonnés de la case a jouer
-			System.out.println("** Indiquez les coordonnées de la case de la piéce que vous voulez jouez ? **");
+			//INPUT des coordonnés de la case à jouer
+			System.out.println("** Indiquez les coordonnées de la case de la pièce que vous voulez jouer ? **");
 			Scanner case1 = new Scanner(System.in);
 			String coordonees_d = case1.nextLine();
 			// Convertissement en INTEGER traitable par l'échiquier
 			int[] tab_coordo1 = this.echiquier.conversion1(coordonees_d);
-			//Vérification si la case choisis est dans l'échiquier
+			//Vérification si la case choisie est dans l'échiquier
 			if ( tab_coordo1[1] >= 0 && tab_coordo1[1] <= 7 && tab_coordo1[0] >= 0 && tab_coordo1[0] <= 7) {
 				Case case_d = new Case( tab_coordo1[1], tab_coordo1[0] );
 
 				//INPUT des coordonnés de la case de destination
-				System.out.println("** Indiquez les coordonnées de la case sur la qu'elle vous voulez vous déplacer ? **");
+				System.out.println("** Indiquez les coordonnées de la case sur laquelle vous voulez vous déplacer ? **");
 				Scanner case2 = new Scanner(System.in);
 				String coordonees_a = case2.nextLine();
 				// Convertissement en INTEGER traitable par l'échiquier
@@ -175,7 +180,7 @@ public class Jeu {
 								if ( (tab_coordo2[0] == 0) || (tab_coordo2[0] == 7) ) {
 									this.echiquier.affiche(); 
 									this.echiquier.Enregistrer();
-									System.out.println("** Vous avez obtenu le droit de promouvoir votre pion ! ** \n ** En qu'elle piéce voulez vous promouvoir votre pion ? (exemple : dame) ** ");
+									System.out.println("** Vous avez obtenu le droit de promouvoir votre pion ! ** \n ** En quelle pièce voulez vous promouvoir votre pion ? (exemple : dame) ** ");
 									Scanner c = new Scanner(System.in);
 									String nom_p = c.nextLine();
 									if (promo_traduction(nom_p) != null) {
@@ -190,13 +195,13 @@ public class Jeu {
 						}
 						else { System.out.println("-- Mouvement impossible -- "); }
 					}
-					else { System.out.println("-- Vous pouvez jouer uniquement vos piéces --"); }
+					else { System.out.println("-- Vous pouvez jouer uniquement vos pièces --"); }
 
 				}
-				else { System.out.println("-- Veuillez choisir une case de l'echiquier --"); }
+				else { System.out.println("-- Veuillez choisir une case de l'échiquier --"); }
 
 			}
-			else { System.out.println("-- Veuillez jouer une piéce étant dans une case de l'echiquier --"); }
+			else { System.out.println("-- Veuillez jouer une pièce étant dans une case de l'échiquier --"); }
 		} 
 	}
 
@@ -243,30 +248,30 @@ public class Jeu {
 	public void jeu_contre_machine() {
 		this.compteur = 1;
 
-		System.out.println("** Vous avez lancez le mode pour jouer contre l'ordinateur ** \n ** Vous jouez les piéces blanches, Bon courage ! **");
+		System.out.println("** Vous avez lancé le mode pour jouer contre l'ordinateur ** \n ** Vous jouez les pièces blanches, Bon courage ! **");
 		while ( this.compteur > 0 ) { 
 
-			//Si le joueur est en echec du roi
+			//Si le joueur est en échec du roi
 			while (this.echiquier.echec()) {
 				this.echiquier.affiche(); 
 
 				System.out.println("** Attention votre roi est en échec !! **\n ** Vous pouvez jouez uniquement un coup pouvant sauver votre roi **");
 
-				// C'est le tour des noires si le compteur de tour est pair (et inversement)
+				// C'est le tour des noirs si le compteur de tour est pair (et inversement)
 				if ( this.compteur%2 == 0 ) {
-					System.out.println("* Au tour des noires *");
+					System.out.println("* Au tour des noirs *");
 				}
-				else { System.out.println("* C'est a votre tour *"); }
+				else { System.out.println("* C'est à votre tour *"); }
 
 				if ( this.compteur%2 != 0 ) {
-					System.out.println("** Indiquez les coordonnées de la case de la piéce que vous voulez jouez ? **");
+					System.out.println("** Indiquez les coordonnées de la case de la pièce que vous voulez jouer ? **");
 					Scanner case1 = new Scanner(System.in);
 					String coordonees_d = case1.nextLine();
 					int[] tab_coordo1 = this.echiquier.conversion1(coordonees_d);
 					if ( tab_coordo1[1] >= 0 && tab_coordo1[1] <= 7 && tab_coordo1[0] >= 0 && tab_coordo1[0] <= 7) {
 						Case case_d = new Case( tab_coordo1[1], tab_coordo1[0] );
 
-						System.out.println("** Indiquez les coordonnées de la case sur la qu'elle vous voulez vous déplacer ? **");
+						System.out.println("** Indiquez les coordonnées de la case sur laquelle vous voulez vous déplacer ? **");
 						Scanner case2 = new Scanner(System.in);
 						String coordonees_a = case2.nextLine();
 						int[] tab_coordo2 = this.echiquier.conversion1(coordonees_a);
@@ -292,14 +297,14 @@ public class Jeu {
 								}
 								else { System.out.println("-- Mouvement impossible -- "); }
 							}
-							else { System.out.println("-- Vous pouvez jouer uniquement vos piéces --"); }
+							else { System.out.println("-- Vous pouvez jouer uniquement vos pièces --"); }
 
 						}
-						else { System.out.println("-- Veuillez choisir une case de l'echiquier --"); }
+						else { System.out.println("-- Veuillez choisir une case de l'échiquier --"); }
 
 					}
 
-					else { System.out.println("-- Veuillez jouer une piéce étant dans une case de l'echiquier --"); }
+					else { System.out.println("-- Veuillez jouer une pièce étant dans une case de l'échiquier --"); }
 
 				}
 			}
@@ -309,7 +314,7 @@ public class Jeu {
 
 			//Si c'est le tour de la machine
 			if ( this.compteur%2 == 0 ) {
-				System.out.println("* Au tour des noires *");
+				System.out.println("* Au tour des noirs *");
 
 				//déf de 4 valeurs aléatoires
 				Random random = new Random();
@@ -345,9 +350,9 @@ public class Jeu {
 				this.echiquier.affiche();
 
 			}
-			System.out.println("* C'est a votre tour *"); 
+			System.out.println("* C'est à votre tour *"); 
 
-			System.out.println("** Indiquez les coordonnées de la case de la piéce que vous voulez jouez ? **");
+			System.out.println("** Indiquez les coordonnées de la case de la pièce que vous voulez jouez ? **");
 			Scanner case1 = new Scanner(System.in);
 			String coordonees_d = case1.nextLine();
 			int[] tab_coordo1 = this.echiquier.conversion1(coordonees_d);
@@ -373,13 +378,13 @@ public class Jeu {
 						}
 						else { System.out.println("-- Mouvement impossible -- "); }
 					}
-					else { System.out.println("-- Vous pouvez jouer uniquement vos piéces --"); }
+					else { System.out.println("-- Vous pouvez jouer uniquement vos pièces --"); }
 
 				}
 				else { System.out.println("-- Veuillez choisir une case de l'echiquier --"); }
 
 			}
-			else { System.out.println("-- Veuillez jouer une piéce étant dans une case de l'echiquier --"); }
+			else { System.out.println("-- Veuillez jouer une pièce étant dans une case de l'echiquier --"); }
 		} 
 	}
 
@@ -410,7 +415,7 @@ public class Jeu {
 	public static void main(String[] args) {
 
 		//Donner la possiblité au joueur de choisir son mode de jeu
-		System.out.println("** Qu'elle mode de jeu voulez vous jouez ? **\n  -- Si vous voulez jouer 1 vs 1 entrer '1vs1' --\n  -- Si vous voulez jouer contre l'ordinateur entrer 'pc' --");
+		System.out.println("** Quel mode de jeu voulez vous jouer ? **\n  -- Si vous voulez jouer 1 vs 1 entrer '1vs1' --\n  -- Si vous voulez jouer contre l'ordinateur entrer 'pc' --");
 		Scanner c = new Scanner(System.in);
 		String mode = c.nextLine();
 		if (mode.equals("1vs1")) {
@@ -421,7 +426,7 @@ public class Jeu {
 			Jeu jeu = new Jeu(0);
 			jeu.jeu_contre_machine();
 		}
-		else { System.out.println("** Veuiller entrer une valeur entre '1vs1' ou 'pc' **");
+		else { System.out.println("** Veuillez entrer une valeur entre '1vs1' ou 'pc' **");
 
 		//Boucle pour forcer le joueur a choisir un mode de jeu
 		while (!mode.equals("1vs1") || !mode.equals("pc")) {

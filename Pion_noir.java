@@ -28,7 +28,7 @@ public class Pion_noir extends Piece {
 		else {return false;}	
 	}
 
-	public boolean verif_case_libre(Case depart, Case arrive) {
+	public boolean verif_case_libre(Case depart, Case arrive) {	
 		if (depart.getX() == arrive.getX() && arrive.getY() == depart.getY()+2) {
 			if (this.echiquier.verif_case_vide(arrive.getX(), depart.getY()+1) == false) {return false;}
 			if (this.echiquier.verif_case_vide(arrive.getX(), depart.getY()+2) == false) {return false;}
@@ -36,18 +36,24 @@ public class Pion_noir extends Piece {
 		else if (depart.getX() == arrive.getX() && arrive.getY() == depart.getY()+1) {
 			if (this.echiquier.verif_case_vide(arrive.getX(), depart.getY()+1) == false) {return false;}
 		}
-		else if (this.prise_en_passant(depart, arrive)) {
-			if (this.echiquier.getNomPiece(depart.getX()-1 ,depart.getY()) == "♙") {
-				this.echiquier.tableau[depart.getY()][depart.getX()-1] = new Piece(" ",2,this.echiquier);
-				return true;
+
+		else if ((depart.getX()-1 >=0) && (depart.getX()-1 <8)) {
+			if (this.echiquier.getNomPiece(depart.getX()-1 ,depart.getY()) == "♟") {
+				if (this.prise_en_passant(depart, arrive)) {
+					this.echiquier.tableau[depart.getY()][depart.getX()-1] = new Piece(" ",2,this.echiquier);
+					return true;}
 			}
-			if (this.echiquier.getNomPiece(depart.getX()+1 ,depart.getY()) == "♙") {
-				this.echiquier.tableau[depart.getY()][depart.getX()+1] = new Piece(" ",2,this.echiquier);
-				return true;
-			}
-			else {return false;}
 		}
-		else if ((depart.getX()-1 == arrive.getX() && arrive.getY()-1 == depart.getY())
+
+		else if ((depart.getX()+1 >=0) && (depart.getX()+1 <8)) {
+			if (this.echiquier.getNomPiece(depart.getX()+1 ,depart.getY()) == "♟") {
+				if (this.prise_en_passant(depart, arrive)) {
+					this.echiquier.tableau[depart.getY()][depart.getX()+1] = new Piece(" ",2,this.echiquier);
+					return true;}
+			}
+		}
+
+		if ((depart.getX()-1 == arrive.getX() && arrive.getY()-1 == depart.getY())
 				|| (depart.getX()+1 == arrive.getX() && arrive.getY()-1 == depart.getY())
 				|| (depart.getX()-1 == arrive.getX() && arrive.getY()+1 == depart.getY())
 				|| (depart.getX()+1 == arrive.getX() && arrive.getY()+1 == depart.getY())) {
@@ -58,46 +64,42 @@ public class Pion_noir extends Piece {
 			else {return false;}
 		}
 		this.premierCoup = false;
+		System.out.println("premier coup :"+this.premierCoup);
 		this.compteurCoup++;
 		return true;
 	}
 
 	public boolean prise_en_passant(Case depart, Case arrive) {
 		//Si le pion adverse est a gauche
-		if (this.echiquier.tableau[depart.getY()][depart.getX()-1].getPremierCoup() == false) {
-			if (this.echiquier.tableau[depart.getY()][depart.getX()-1].getCompteurCoup() == 1) {
-				if (arrive.getX() == depart.getX()-1 && arrive.getY() == depart.getY()+1) {
-					if (this.echiquier.verif_case_vide(arrive.getX(), arrive.getY())) {
-						return true;
+		if ((depart.getX()-1 >=0) && (depart.getX()-1 <8)) {
+			if (this.echiquier.tableau[depart.getY()][depart.getX()-1].getPremierCoup() == false) {
+				if (this.echiquier.tableau[depart.getY()][depart.getX()-1].getCompteurCoup() == 1) {
+					if (arrive.getX() == depart.getX()-1 && arrive.getY() == depart.getY()+1) {
+						if (this.echiquier.verif_case_vide(arrive.getX(), arrive.getY())) {
+							return true;
 
+						}
 					}
+
+
 				}
-
-
 			}
 		}
 		//Si le pion adverse est a droite
-		System.out.println(this.echiquier.tableau[depart.getY()][depart.getX()].getPremierCoup());
+		if ((depart.getX()+1 >=0) && (depart.getX()+1 <8)) {
+			if (this.echiquier.tableau[depart.getY()][depart.getX()+1].getPremierCoup() == false) {
+				if (this.echiquier.tableau[depart.getY()][depart.getX()+1].getCompteurCoup() == 1) {
+					if ((arrive.getX() == depart.getX()+1) && (arrive.getY()== depart.getY()+1)) {	
+						if (this.echiquier.verif_case_vide(arrive.getX(), arrive.getY())) {
+							return true;
 
-		if (this.echiquier.tableau[depart.getY()][depart.getX()+1].getPremierCoup() == false) {
-			System.out.println("1"+this.echiquier.tableau[depart.getY()][depart.getX()+1].getPremierCoup());
-			if (this.echiquier.tableau[depart.getY()][depart.getX()+1].getCompteurCoup() == 1) {
-				System.out.println("2");
-				if (arrive.getX() == depart.getX()+1 && arrive.getY() == depart.getY()+1) {	
-					System.out.println("3");
-					if (this.echiquier.verif_case_vide(arrive.getX(), arrive.getY())) {
-						System.out.println("4");
-						return true;
-
+						}
 					}
+
+
 				}
-
-
 			}
-			else {System.out.println(this.echiquier.tableau[depart.getY()][depart.getX()+1].getCompteurCoup());}
 		}
-		else { System.out.println(this.echiquier.tableau[depart.getY()][depart.getX()+1].getPremierCoup()) ;}
-		System.out.println("3");
 		return false;
 	}
 
