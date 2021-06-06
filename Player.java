@@ -1,14 +1,13 @@
 
 public class Player {
 	private String couleur;
-	private String prenom;
-	
-	// Méthode qui définie la couleur des pièces du joueur et le nom qu'il s'est attriubuer 
-	public Player(String prenom, String couleur) {
+	private String nom;
+
+
+	public Player(String nom, String couleur) {
 		this.setCouleur(couleur);
-		this.setPrenom(prenom);
+		this.setNom(nom);
 	}
-	
 
 	/* GETTERS & SETTERS */
 	public String getCouleur() {
@@ -21,13 +20,13 @@ public class Player {
 	}
 
 
-	public String getPrenom() {
-		return prenom;
+	public String getNom() {
+		return nom;
 	}
 
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setNom(String prenom) {
+		this.nom = prenom;
 	}
 	/* FIN GETTERS & SETTERS */
 }

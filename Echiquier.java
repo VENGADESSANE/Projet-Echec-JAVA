@@ -5,11 +5,12 @@ import java.io.IOException;
 
 public class Echiquier {
 	public Piece[][] tableau;
+	private Jeu jeu;
 
 
-	public Echiquier() {
+	public Echiquier(Jeu j) {
 		//this.pieces = new String ("♙♖♘♗♕♔♟♜♞♝♛♚");
-
+		this.jeu = j;
 		// Création du tableau
 		this.tableau = new Piece[8][8];
 
@@ -31,7 +32,7 @@ public class Echiquier {
 
 			for (int y = 0; y < 8; y++) {
 				//Les cases libres sont représenter par des pions n'ayant pas de nom afin de permettre
-				//un bon affichage de l'échiquer a travers tout les platformes.
+				//un bon affichage de l'échiquer a travers tout les platformes ect..
 				tableau[i][y] = new Piece(" ",2,this);	
 			}
 		}
@@ -49,9 +50,11 @@ public class Echiquier {
 			tableau[6][i] = new Pion_blanc(this);
 		}
 	}
-	//Constructeur qui permet de crée un tableau a partir d'un fichier.
-	public Echiquier(String adresse) {
 
+	//Constructeur qui permet de crée un tableau a partir d'un fichier.
+	public Echiquier(String adresse,Jeu je) {
+
+		this.jeu = je;
 		// Création du tableau
 		this.tableau = new Piece[8][8];
 
@@ -59,6 +62,7 @@ public class Echiquier {
 			BufferedReader br = new BufferedReader(new FileReader(adresse));
 			String ligne;
 
+			//Lire chaque ligne et remplir le tableau
 			ligne = br.readLine();
 			for (int i = 0;i<8 && ligne != null;i++) {
 
@@ -111,7 +115,14 @@ public class Echiquier {
 				}
 			}
 
+			//Reporter le compteur de l'ancienne partie
+			this.jeu.setCompteur(Integer.valueOf(ligne));
 
+			//Reporter les historiques de coups de l'ancienne partie.
+			ligne = br.readLine();
+			this.jeu.setCoordonees_d(ligne);
+			ligne = br.readLine();
+			this.jeu.setCoordonees_a(ligne);
 			br.close();
 		}
 		catch (IOException e) {
@@ -119,17 +130,29 @@ public class Echiquier {
 		}
 	}
 
-	public void Enregistrer() {
+	//Sauvegarde automatique
+	public void enregistrer(String cd, String ca) {
 
 		try {
+
 			FileWriter fw = new FileWriter("/home/subbu/eclipse-workspace/Jeu_echec/src/charger");
+
+			//écrire les informations des positions des piéces dans un fichier txt
 			for (int i = 0;i<8;i++) {
 
 				for (int j = 0;j<8;j++) {
 					fw.write(this.tableau[i][j] + "\n");	
 				}
 			}
+
+			//Sauver le compteur
+			fw.write(""+this.jeu.getCompteur()+"\n");
+
+			//Sauver l'historique des coups
+			fw.write(cd+"\n");
+			fw.write(ca);
 			fw.close();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -139,7 +162,7 @@ public class Echiquier {
 
 	//Méthode pérmettant l'affichage de l'échiquer
 	public void affiche() {
-		//System.out.println(this.tableau[4][2].getPremierCoup()+this.tableau[4][2].getNom());
+
 		System.out.println(new String ("_|_________________"));
 		for( int i=0; i<8; i++) {
 			String s = new String();
@@ -158,6 +181,7 @@ public class Echiquier {
 			}
 			System.out.println(s);		
 		}
+
 		System.out.println(new String ("_|________________|"));
 		System.out.println(new String (" | A|B|C|D|E|F|G|H|"));	
 
@@ -184,7 +208,7 @@ public class Echiquier {
 		else {return false;}
 	}
 
-	//Conversion des lettes INPUT en INTEGER traitable par les classes
+	//Conversion des lettes INPUT en INTEGER traitable par les clases
 	public static int conversion_lettre(char lettre) {
 		if(lettre == 'A' || lettre == 'a')
 			return 0;
@@ -259,15 +283,25 @@ public class Echiquier {
 		return this.tableau[cas.getY()][cas.getX()];
 	}
 
+	//Vérification si MAT, CAD si le roi ne peut plus étre sauver
+	public boolean mat() {
 
-	/*public static void main(String args[]) {
-		Echiquier e1 = new Echiquier();
-		e1.affiche();
-		e1.Enregistrer();
-
-		Echiquier e2 = new Echiquier("/home/subbu/eclipse-workspace/Jeu_echec/src/charger");
-		e2.affiche();
+		for (int a = 0; a < 8; a++) {
+			for (int b = 0; b < 8; b++) {
+				if (this.tableau[a][b].verif_mat()==false) {
+					return false;}
+			}
+		}
+		return true;
 	}
-	 */
+
+	//Vérification si les coordonnées sont dans l'échiquier
+	public boolean coordo_valide(int x, int y) {
+		if ((x<8 && x>=0) && (y<8 && y>=0)) {
+			return true;
+		}
+		return false;
+	}
+
 }
 

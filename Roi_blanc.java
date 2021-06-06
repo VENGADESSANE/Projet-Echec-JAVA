@@ -71,9 +71,9 @@ public class Roi_blanc extends Piece {
 			return false;
 	}
 
-	//verifaction des mouvements possibles
+	//Verification si il a le droit de se positioner sur cette case
 	public boolean verif(Case depart, Case arrive) {
-		
+
 		if (this.petite_roque(depart, arrive)) 
 			return true;
 		if (this.grande_roque(depart, arrive))
@@ -106,8 +106,11 @@ public class Roi_blanc extends Piece {
 			return false;
 	}
 
+	//Vérification si personne est sur son chemain : ICI toujours vrai car le roi ne peut pas sauter(il se déplace que d'une case)
 	public boolean verif_case_libre(Case depart, Case arrive) {return true;}
 
+
+	//Petite roque
 	public boolean petite_roque(Case depart, Case arrive) {
 		if ((arrive.getX()==6) && (arrive.getY()==7)) {
 			if ((this.echiquier.tableau[7][6].getNom() == " ") && (this.echiquier.tableau[7][5].getNom() == " ")) {
@@ -116,15 +119,14 @@ public class Roi_blanc extends Piece {
 						this.echiquier.tableau[7][5] = this.echiquier.tableau[7][7];
 						this.echiquier.tableau[7][7] = new Piece(" ",2,this.echiquier);
 						return true;
-
 					}
-
 				}
 			}
 		}
 		return false;
 	}
-	
+
+	//Grande roque
 	public boolean grande_roque(Case depart, Case arrive) {
 		if ((arrive.getX()==2) && (arrive.getY()==7)) {
 			if ((this.echiquier.tableau[7][1].getNom() == " ") && (this.echiquier.tableau[7][2].getNom() == " ") && (this.echiquier.tableau[7][3].getNom() == " ") ) {
@@ -133,13 +135,107 @@ public class Roi_blanc extends Piece {
 						this.echiquier.tableau[7][3] = this.echiquier.tableau[7][0];
 						this.echiquier.tableau[7][0] = new Piece(" ",2,this.echiquier);
 						return true;
-
 					}
-
 				}
 			}
 		}
 		return false;
+	}
+
+
+	//Vérification si en effectuant un mouvement il peut sauver son roi
+	public boolean verif_mat() {
+		this.setMa_position(this.ma_position());
+
+		try {
+			Piece p = 	this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()];
+			this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()] = this;
+			if (this.echiquier.echec()==false) {
+				this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()] = p;
+				return false;
+			}
+			this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()] = p;
+		}catch(Exception e){
+
+		}
+		try {
+			Piece p = this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()];
+			this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()] = this;
+			if (this.echiquier.echec()==false) {
+				this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()] = p;
+				return false;
+			}
+			this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()] = p;
+		}catch(Exception e){
+
+		}
+		try {
+			Piece p = this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()+1];
+			this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()+1] = this;
+			if (this.echiquier.echec()==false) {
+				this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()+1] = p;
+				return false;
+			}
+			this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()+1] = p;
+		}catch(Exception e){
+
+		}
+		try {
+			Piece p = this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()-1];
+			this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()-1] = this;
+			if (this.echiquier.echec()==false) {
+				this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()-1] = p;
+				return false;
+			}
+			this.echiquier.tableau[this.getMa_position().getY()+1][this.getMa_position().getX()-1] = p;
+		}catch(Exception e){
+
+		}
+		try {
+			Piece p = this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()-1];
+			this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()-1] = this;
+			if (this.echiquier.echec()==false) {
+				this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()-1] = p;
+				return false;
+			}
+			this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()-1] = p;
+		}catch(Exception e){
+
+		}
+		try {
+			Piece p = this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()+1];
+			this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()+1] = this;
+			if (this.echiquier.echec()==false) {
+				this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()+1] = p;
+				return false;
+			}
+			this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()+1] = p;
+		}catch(Exception e){
+
+		}
+		try {
+			Piece p = this.echiquier.tableau[this.getMa_position().getY()][this.getMa_position().getX()+1];
+			this.echiquier.tableau[this.getMa_position().getY()][this.getMa_position().getX()+1] = this;
+			if (this.echiquier.echec()==false) {
+				this.echiquier.tableau[this.getMa_position().getY()][this.getMa_position().getX()+1] = p;
+				return false;
+			}
+			this.echiquier.tableau[this.getMa_position().getY()][this.getMa_position().getX()+1] = p;
+		}catch(Exception e){
+
+		}
+		try {
+			Piece p = this.echiquier.tableau[this.getMa_position().getY()][this.getMa_position().getX()-1];
+			this.echiquier.tableau[this.getMa_position().getY()][this.getMa_position().getX()-1] = this;
+			if (this.echiquier.echec()==false) {
+				this.echiquier.tableau[this.getMa_position().getY()][this.getMa_position().getX()-1] = p;
+				return false;
+			}
+			this.echiquier.tableau[this.getMa_position().getY()][this.getMa_position().getX()-1] = p;
+		}catch(Exception e){
+
+		}
+		return true;
 	}
 
 
