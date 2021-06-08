@@ -284,12 +284,14 @@ public class Echiquier {
 	}
 
 	//Vérification si MAT, CAD si le roi ne peut plus étre sauver
-	public boolean mat() {
+	public boolean mat(int couleur) {
 
 		for (int a = 0; a < 8; a++) {
 			for (int b = 0; b < 8; b++) {
-				if (this.tableau[a][b].verif_mat()==false) {
-					return false;}
+				if (this.tableau[a][b].getCouleur()==couleur) {
+					if (this.tableau[a][b].verif_mat()==false) {
+						return false;}
+				}
 			}
 		}
 		return true;

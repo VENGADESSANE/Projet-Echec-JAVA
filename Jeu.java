@@ -64,7 +64,10 @@ public class Jeu {
 			while (this.echiquier.echec()) {
 				
 				//Véification si le joueur est en echec et MAT
-				if (this.echiquier.mat()) {
+				int couleur;
+				if ( this.compteur%2 == 0 ) {couleur = 1;}
+				else {couleur = 0;}
+				if (this.echiquier.mat(couleur)) {
 					String unNom = new String();
 					if ( this.compteur%2 == 0 ) { unNom = this.joueur2.getNom(); }
 					else { unNom = this.joueur1.getNom(); }
@@ -132,13 +135,25 @@ public class Jeu {
 									this.echiquier.tableau[ tab_coordo2[0] ][ tab_coordo2[1] ] = piece_d;
 									this.compteur = this.compteur + 1;
 
-									//La pièce clouée :Si suite au mouvement un joueur se met en echec : on annule le coup
+									//La pièce clouée :Si suite au mouvement un joueur se met en echec : on annule le coup + "PAT"
 									if (this.echiquier.echec()) {
+										
+										//PAT
+										if ( this.compteur%2 == 0 ) {couleur = 1;}
+										else {couleur = 0;}
+										if (piece_d.non_roi()==false && this.echiquier.mat(couleur)) {
+											String unNom = new String();
+											if ( this.compteur%2 == 0 ) { unNom = this.joueur2.getNom(); }
+											else { unNom = this.joueur1.getNom(); }
+											System.out.println("---Félictation "+unNom+" vous avez gagner---");
+											this.fin = true;
+											break;
+										}
 										this.echiquier.tableau[ tab_coordo1[0] ][ tab_coordo1[1] ] = piece_d;
 										this.echiquier.tableau[ tab_coordo2[0] ][ tab_coordo2[1] ] = piece_a;
 										this.compteur = this.compteur - 1;
 										this.echiquier.enregistrer(coordonees_d,coordonees_a);
-										this.echiquier.affiche();
+									//	this.echiquier.affiche();
 									}
 								}
 
@@ -296,11 +311,14 @@ public class Jeu {
 
 			//Si le joueur est en échec du roi
 			while (this.echiquier.echec()) {
-				if (this.echiquier.mat()) {
+				int couleur;
+				if ( this.compteur%2 == 0 ) {couleur = 1;}
+				else {couleur = 0;}
+				if (this.echiquier.mat(couleur)) {
 					String unNom = new String();
 					if ( this.compteur%2 == 0 ) { unNom = this.joueur2.getNom(); }
 					else { unNom = this.joueur1.getNom(); }
-					System.out.println("---Félictation"+unNom+"vous avez gagner---");
+					System.out.println("---Félictation "+unNom+" vous avez gagner---");
 					this.fin = true;
 					break;
 				}

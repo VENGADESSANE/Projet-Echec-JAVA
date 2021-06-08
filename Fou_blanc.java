@@ -25,8 +25,8 @@ public class Fou_blanc extends Piece {
 		if (depart.getY() != arrive.getY() && depart.getX() != arrive.getX()) {
 			//si le mouvement s'effectue vers le haut a droite
 			if (arrive.getX() > depart.getX() && arrive.getY() > depart.getY()) {
-				int px = arrive.getX();
-				int py = arrive.getY();
+				int px = arrive.getX()-1;
+				int py = arrive.getY()-1;
 				while (depart.getX() < px && depart.getY() < py) {
 					if (this.echiquier.verif_case_vide(px, py) == false) {return false;}
 					px = px - 1;
@@ -36,8 +36,8 @@ public class Fou_blanc extends Piece {
 			}
 			//si le mouvement s'effectue vers le bas a gauche
 			if (arrive.getX() < depart.getX() && arrive.getY() < depart.getY()) {
-				int px = arrive.getX();
-				int py = arrive.getY();
+				int px = arrive.getX()+1;
+				int py = arrive.getY()+1;
 				while (depart.getX() > px && depart.getY() > py) {
 					if (this.echiquier.verif_case_vide(px, py) == false) {return false;}
 					px = px + 1;
@@ -47,8 +47,8 @@ public class Fou_blanc extends Piece {
 			}
 			//si le mouvement s'effectue vers le haut a gauche 
 			if (arrive.getX() < depart.getX() && arrive.getY() > depart.getY()) {
-				int px = arrive.getX();
-				int py = arrive.getY();	
+				int px = arrive.getX()+1;
+				int py = arrive.getY()-1;	
 				while (depart.getX() > px && depart.getY() < py) {
 					if (this.echiquier.verif_case_vide(px, py) == false) {return false;}
 					px = px + 1;
@@ -58,8 +58,8 @@ public class Fou_blanc extends Piece {
 			}
 			//si le mouvement s'effectue vers le bas a droite
 			if (arrive.getX() > depart.getX() && arrive.getY() < depart.getY()) {
-				int px = arrive.getX();
-				int py = arrive.getY();
+				int px = arrive.getX()-1;
+				int py = arrive.getY()-1;
 				while (depart.getX() < px && depart.getY() > py) {
 					if (this.echiquier.verif_case_vide(px, py) == false) {return false;}
 					px = px - 1;

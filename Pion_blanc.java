@@ -118,14 +118,19 @@ public class Pion_blanc extends Piece {
 	public boolean verif_mat() {
 		this.setMa_position(this.ma_position());
 		
+		try {
 		Piece p = this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()];
 		this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()] = this;
 		if (this.echiquier.echec()==false) {
-			this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()] = p;
+			this.setMa_position(this.ma_position());
+			this.echiquier.tableau[this.getMa_position().getY()][this.getMa_position().getX()] = p;
 			return false;
 		}
-		this.echiquier.tableau[this.getMa_position().getY()-1][this.getMa_position().getX()] = p;
-		
+		this.setMa_position(this.ma_position());
+		this.echiquier.tableau[this.getMa_position().getY()][this.getMa_position().getX()] = p;
+		}catch(Exception e) {
+			return false;
+		}
 		return true;
 	}
 
